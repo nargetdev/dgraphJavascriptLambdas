@@ -1,0 +1,25 @@
+services:
+  dgraph:
+    image: dgraph/standalone:latest
+    environment: 
+      DGRAPH_ALPHA_GRAPHQL: "lambda-url=http://dgraph_lambda:8686/graphql-worker"
+    ports:
+      - "8080:8080"
+      - "9080:9080"
+      - "8000:8000"
+    volumes:
+      - dgraph:/dgraph
+
+  dgraph_lambda:
+    image: dgraph/dgraph-lambda:latest
+
+    ports:
+      - "8686:8686"
+    environment:
+      DGRAPH_URL: http://dgraph:8080
+    volumes:
+      - ./gql/script.js:/app/script/script.js:ro
+
+volumes:
+  dgraph: {}
+
