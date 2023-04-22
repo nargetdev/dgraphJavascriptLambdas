@@ -6,7 +6,7 @@ async function authorsByName({args, dql}) {
             reputation: Author.reputation
         }
     }`, {"$name": args.name})
-    console.log("FLOOOPIE!!!!")
+    console.log(args)
     return results.data.queryAuthor
 }
 
