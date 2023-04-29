@@ -1,5 +1,4 @@
 type Author {
-    id: ID!
     name: String! @search(by: [hash, trigram])
     dob: DateTime
     reputation: Float
@@ -7,4 +6,8 @@ type Author {
 
 type Query {
     authorsByName(name: String!): [Author] @lambda
+}
+
+type Seed {
+    qr: String!
 }
